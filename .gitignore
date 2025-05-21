@@ -1,7 +1,13 @@
 # Local .terraform directories
+# Ignored because it contains provider plugins, backend config. and module caches - bloat
+# not always sensitive 
 .terraform/
 
 # .tfstate files
+# IMPORTANT tf keeps a log of what it's created, can include credentials
+# Never share these files via github as cannot be written to properly
+# Need to be locked when someone is using them (e.g. during tf apply)
+# Blob storage + dynamo for AWS
 *.tfstate
 *.tfstate.*
 
@@ -35,3 +41,8 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# .terraform.lock.hcl
+# Not included as includes dependencies/provider version stuff that needs to be consistent across
+# an entire project. 
+# Can be updated throught product lifecycle
